@@ -1,0 +1,72 @@
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# IntelliJ IDEA
+# ==========================
+.idea/
+*.iml
+out/
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+
+# ==========================
+# Java / Spring Boot
+# ==========================
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# ==========================
+# React / Vite
+# ==========================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ==========================
+# Environment Files
+# ==========================
+.env
+.env.*
+!.env.example
+
+# ==========================
+# Coverage
+# ==========================
+coverage/
+
+# ==========================
+# Temporary Files
+# ==========================
+*.swp
+*.swo
+*.tmp
+
+# ==========================
+# Mac/Linux
+# ==========================
+.directory
+
+# ==========================
+# Eclipse (if used)
+# ==========================
+.project
+.classpath
+.settings/
+
+# ==========================
+# Maven Wrapper (optional)
+# Uncomment if you don't want to commit the wrapper
+# ==========================
+# backend/.mvn/
+# backend/mvnw
+# backend/mvnw.cmd
