@@ -13,3 +13,20 @@ export const fetchEmployeeById = async (id) => {
   console.log(`Fetched Employee with ID ${id}:`, employee);
   return employee;
 }
+
+export const addEmployee = async (employee) => {
+  const response = await fetch(`${BASE_API_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(employee)
+  })
+
+  if(!response.ok) {
+    console.error("Error creating employee. Response:", response)
+    throw new Error("Failed to create employee")
+  }
+
+  return response.json()
+}

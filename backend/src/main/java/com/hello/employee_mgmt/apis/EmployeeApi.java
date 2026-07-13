@@ -41,7 +41,7 @@ public class EmployeeApi {
   }
 
   @PostMapping
-  public ResponseEntity<EmployeeDto> create(@RequestBody EmployeeRequest employeeRequest) {
+  public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeRequest employeeRequest) {
     EmployeeDto created = employeeService.create(employeeRequest);
     return ResponseEntity.created(URI.create("/employee/" + created.getId())).body(created);
   }

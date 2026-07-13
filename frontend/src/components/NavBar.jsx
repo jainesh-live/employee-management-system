@@ -39,6 +39,12 @@ function NavBar() {
                 Departments
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/employees/add">
+                Add Employee
+              </Link>
+            </li>
           </ul>
 
           <form className="d-flex" role="search">
