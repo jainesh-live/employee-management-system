@@ -1,4 +1,6 @@
-const BASE_API_URL = 'http://localhost:8080/department';
+import API_BASE_URL from "./config";
+
+const BASE_API_URL = `${API_BASE_URL}/department`;
 
 export const fetchDepartments = async () => {
   const response = await fetch(`${BASE_API_URL}`);
