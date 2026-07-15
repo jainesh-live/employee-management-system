@@ -47,4 +47,8 @@ public class EmployeeService {
     Employee saved = employeeRepo.save(employee);
     return employeeMapper.toDto(saved);
   }
+
+  public void delete(Long id) {
+      employeeRepo.deleteById(id);
+  }
 }

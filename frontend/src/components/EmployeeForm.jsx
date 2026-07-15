@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchDepartments } from "../services/DepartmentService";
-import { addEmployee } from "../services/EmployeeService";
+import { addEmployee, fetchEmployeeById } from "../services/EmployeeService";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 function EmployeeForm() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEdit = !!id;
+
   const [empForm, setEmpForm] = useState({
     name: "",
     emailId: "",
@@ -24,14 +29,32 @@ function EmployeeForm() {
       }
     };
 
+    const getEditEmployee = async () => {
+      try {
+        const editEmployee = await fetchEmployeeById(id)
+        console.log(editEmployee)
+        const empForm = {...editEmployee, departmentId: editEmployee.department.id};
+
+        setEmpForm(empForm)
+      } catch (err) {
+        console.error("Error getting edit employee", err);
+      } finally {
+
+      }
+    }
+
     getDepartmentList();
+
+    if(isEdit) {
+      getEditEmployee();
+    }
+
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const addedEmployee = await addEmployee(empForm);
-      console.log("Added employee", addedEmployee);
       navigate(`/employees/${addedEmployee.id}`)
     } catch (err) {
       console.error("Error adding employee", err);
@@ -44,6 +67,8 @@ function EmployeeForm() {
   };
 
   return (
+    <div className="container mt-5 ">
+    <PageHeader title="Add Employee" />
     <form className="container mt-4">
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
@@ -105,6 +130,7 @@ function EmployeeForm() {
           name="departmentId"
           value={empForm.departmentId}
           onChange={handleChange}
+          
         >
           <option value="">Select Department</option>
           {departmentList.map((dep) => {
@@ -121,6 +147,7 @@ function EmployeeForm() {
         Save Employee
       </button>
     </form>
+    </div>
   );
 }
 

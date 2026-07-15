@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { fetchDepartmentById } from "../services/DepartmentService";
 import DepartmentCard from "../components/DepartmentCard";
 import { Link } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
 
 function DepartmentDetails() {
   const { id } = useParams();
@@ -40,6 +41,7 @@ function DepartmentDetails() {
 
   return (
     <main className="container mt-4">
+      <PageHeader title={`Department Details: ${department.name}`} />
       <div className="row">
         <div className="col-md-6">
           <DepartmentCard department={department} />
@@ -69,10 +71,6 @@ function DepartmentDetails() {
           <Link to="/departments" className="btn btn-secondary">
             Back
           </Link>
-          <Link to={`/departments/edit/${department.id}`} className="btn btn-warning">
-            Edit
-          </Link>
-          <button className="btn btn-danger">Delete</button>
         </div>
       </div>
     </main>

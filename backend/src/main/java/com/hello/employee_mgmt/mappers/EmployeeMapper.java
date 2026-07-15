@@ -17,7 +17,6 @@ public interface EmployeeMapper {
 
   List<EmployeeDto> toDtoList(List<Employee> employees);
 
-  @Mapping(target = "id", ignore = true)
   @Mapping(target = "department", ignore = true)
   Employee toEntity(EmployeeRequest employeeRequest);
 }

@@ -1,18 +1,35 @@
 import { useEffect, useState } from "react";
 import { fetchDepartments } from "../services/DepartmentService";
 import { Link } from "react-router-dom";
+import PageHeader from "../components/PageHeader";
+import { useNavigate } from "react-router-dom";
 
 function DepartmentList() {
   const [departmentList, setDepartmentList] = useState([]);
+  const [originalDepartmentList, setOriginalDepartmentList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    const filteredDepartments = originalDepartmentList.filter((dep) =>
+      dep.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setDepartmentList(filteredDepartments);
+  };
 
   useEffect(() => {
     const getDepartments = async () => {
       try {
         const fetchedDepartments = await fetchDepartments();
+        fetchedDepartments.sort((a, b) => a.id - b.id);
         setDepartmentList(fetchedDepartments);
+        setOriginalDepartmentList(fetchedDepartments);
       } catch (err) {
-        console.err("Error fetching departments", err);
-      } finally {
+        console.error("Error fetching departments", err);
       }
     };
     getDepartments();
@@ -20,8 +37,15 @@ function DepartmentList() {
 
   return (
     <div className="container mt-5 ">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Departments</h2>
+      <PageHeader title="Departments" />
+      <div className="d-flex justify-content-between align-items-center mb-3 gap-3">
+        <input
+          className="form-control w-50"
+          type="search"
+          placeholder="Search by department name..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
         <Link to="/departments/add" className="btn btn-primary text-white">
           Add Department
         </Link>
@@ -32,30 +56,14 @@ function DepartmentList() {
           <tr>
             <th>ID</th>
             <th>Department Name</th>
-            <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
           {departmentList.map((dep) => (
-            <tr key={dep.id}>
+            <tr className="clickable-row" key={dep.id} onClick={() => navigate(`/departments/${dep.id}`)}>
               <td>{dep.id}</td>
               <td>{dep.name}</td>
-              <td className="text-nowrap">
-                <Link
-                  to={`/departments/edit/${dep.id}`}
-                  className="btn btn-warning btn-sm me-2"
-                >
-                  Edit
-                </Link>
-
-                <Link
-                  to={`/departments/${dep.id}`}
-                  className="btn btn-primary btn-sm"
-                >
-                  View
-                </Link>
-              </td>
             </tr>
           ))}
         </tbody>

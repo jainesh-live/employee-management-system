@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class EmployeeRequest {
 
+  private Long id;
   private String name;
   private String emailId;
   private Status status;

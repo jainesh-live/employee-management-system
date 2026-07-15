@@ -18,7 +18,7 @@ function EmployeeCard({ employee }) {
         height="120"
       />
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3 bg-light rounded shadow p-2">
         <h5 className="card-title mb-0">{name || "Employee Name"}</h5>
 
         <StatusSpan status={status}></StatusSpan>
@@ -32,11 +32,6 @@ function EmployeeCard({ employee }) {
       <p className="card-text mb-2">
         <strong>Department:</strong><br />
         {department?.name || "Unknown"}
-      </p>
-
-      <p className="card-text">
-        <strong>Status:</strong><br />
-        {status || "Active"}
       </p>
     </div>
 

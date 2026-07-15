@@ -19,12 +19,13 @@ const sampleEmployee = {
 
 function App() {
   return (
-    <main className="container-fluid">
+    <main className="container-fluid  mt-5 pt-4">
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/employees/:id" element={<EmployeeDetails />} />
         <Route path="/employees/add" element={<EmployeeForm />} />
+        <Route path="/employees/edit/:id" element={<EmployeeForm />} />
         <Route path="/departments" element={<DepartmentList />} />
         <Route path="/departments/add" element={<DepartmentForm />} />
         <Route path="/departments/:id" element={<DepartmentDetails />} />
