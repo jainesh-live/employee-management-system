@@ -2,6 +2,20 @@
 
 A full-stack Employee Management application built with **Spring Boot** on the backend and **React + Vite** on the frontend. The repository demonstrates RESTful API design, CRUD operations for employees and departments, and a responsive Bootstrap-based interface.
 
+## Table of Contents
+
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Repository Structure with main conponents (mono-repo)](#repository-structure-with-main-components-mono-repo)
+- [Prerequisites](#prerequisites)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
+  - [Serve UI with Docker + Nginx](#serve-ui-with-docker--nginx)
+- [API Documentation](#api-documentation)
+- [Notes](#notes)
+- [Improvements](#improvements)
+- [License](#license)
+
 ## Tech Stack
 
 ### Backend
