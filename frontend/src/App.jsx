@@ -5,6 +5,10 @@ import EmployeeDetails from './pages/EmployeeDetails';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import EmployeeForm from './components/EmployeeForm';
+import DepartmentList from './pages/DepartmentList';
+import DepartmentForm from './components/DepartmentForm';
+import DepartmentDetails from './pages/DepartmentDetails';
+
 
 const sampleEmployee = {
   name: 'Ava Patel',
@@ -21,6 +25,9 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/employees/:id" element={<EmployeeDetails />} />
         <Route path="/employees/add" element={<EmployeeForm />} />
+        <Route path="/departments" element={<DepartmentList />} />
+        <Route path="/departments/add" element={<DepartmentForm />} />
+        <Route path="/departments/:id" element={<DepartmentDetails />} />
       </Routes>
     </main>
   );

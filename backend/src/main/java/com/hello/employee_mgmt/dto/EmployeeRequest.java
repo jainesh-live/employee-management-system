@@ -11,5 +11,5 @@ public class EmployeeRequest {
   private String name;
   private String emailId;
   private Status status;
-  private Integer departmentId;
+  private Long departmentId;
 }
