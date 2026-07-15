@@ -125,6 +125,38 @@ The frontend runs at:
 http://localhost:5173
 ```
 
+### Serve UI with Docker + Nginx
+
+To serve the built website using Nginx in a Docker container:
+
+1. Build the frontend production bundle first:
+
+   ```bash
+   npm run build
+   ```
+
+2. Start the container with Docker Compose:
+
+   ```bash
+   docker compose up --build -d
+   ```
+
+3. Open the app in your browser at:
+
+   ```text
+   http://localhost
+   ```
+
+- The Compose file in [docker-compose.yml](docker-compose.yml) mounts the built files from the dist folder and uses the Nginx configuration from [docker/nginx.conf](docker/nginx.conf). 
+- That Nginx config forwards requests under /api/ to the backend host at http://host.docker.internal:8080/ so the frontend can reach the API from inside the container. 
+- You can replace this value with any other API base URL where your backend is running.
+
+To stop the container later, run:
+
+```bash
+docker compose down
+```
+
 ## API Documentation
 
 With the backend running, Swagger UI is available at:
