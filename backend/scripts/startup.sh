@@ -13,6 +13,8 @@ echo "Log File  : ${LOG_FILE}"
 echo "========================================="
 
 # Environment variables
+export CORS_ALLOWED_ORIGINS=
+export APP_PORT=8080
 export SPRING_PROFILES_ACTIVE=local
 export DB_USERNAME=
 export DB_PASSWORD=
