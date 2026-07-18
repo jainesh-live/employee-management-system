@@ -4,6 +4,12 @@ const BASE_API_URL = `${API_BASE_URL}/employee`;
 
 export const fetchEmployees = async () => {
   const response = await fetch(`${BASE_API_URL}`);
+
+  if(!response.ok) {
+    console.error("Error getting employeeList. Response:", response)
+    throw new Error("Failed to create employee")
+  }
+
   const employees = await response.json();
   return employees;
 };
