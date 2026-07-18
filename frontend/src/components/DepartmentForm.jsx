@@ -1,40 +1,39 @@
-import { useEffect, useState } from "react";
-import { addDepartment } from '../services/DepartmentService'
+import { useState } from "react";
+import { addDepartment } from "../services/DepartmentService";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../context/ToastProvider";
 
 function DepartmentForm() {
+  const navigate = useNavigate();
+  const { addToast } = useToast();
 
-    const navigate = useNavigate()
+  const [depForm, setDepForm] = useState({
+    name: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
 
-    const[depForm, setDepForm] = useState({
-        name: ""
-    });
+  const handleChange = (e) => {
+    setDepForm((values) => ({ ...values, [e.target.name]: e.target.value }));
+  };
 
-    const handleChange = (e) => {
-        setDepForm((values) => ({ ...values, [e.target.name]: e.target.value }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const addedDepartment = await addDepartment(depForm);
+      addToast("Department added successfully", "success");
+      navigate(`/departments/${addedDepartment.id}`);
+    } catch (err) {
+      console.error("Error adding department", err);
+      addToast("Error adding department", "error");
+    } finally {
+      setSubmitting(false);
     }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        try {
-            const addedDepartment = await addDepartment(depForm)
-            navigate(`/departments/${addedDepartment.id}`)
-        } catch (err) {
-            console.error("Error adding department", err)
-
-        } finally {
-
-        }
-
-    }
-
-    useEffect(()=>{
-
-    }, [])
-
-    return (
-    <form className="container mt-4">
+  return (
+    <form className="container mt-4" onSubmit={handleSubmit}>
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
           Department Name
@@ -50,8 +49,8 @@ function DepartmentForm() {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-        Save Department
+      <button type="submit" className="btn btn-primary" disabled={submitting}>
+        {submitting ? "Saving..." : "Save Department"}
       </button>
     </form>
   );

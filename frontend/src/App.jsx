@@ -19,7 +19,7 @@ const sampleEmployee = {
 
 function App() {
   return (
-    <main className="container-fluid  mt-5 pt-4">
+    <main className="container-fluid mt-5 pt-4">
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />} />

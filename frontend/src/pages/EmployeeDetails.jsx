@@ -76,7 +76,8 @@ function EmployeeDetails() {
 
   return (
     <PageState loading={loading} onRetry={getEmployee} errorState={errorState}>
-      <main className="container mt-4">
+     
+     {employee && <main className="container mt-4">
         <PageHeader title="Employee Details" />
         <div className="card shadow">
           <div className="card-header d-flex justify-content-between align-items-center">
@@ -140,7 +141,7 @@ function EmployeeDetails() {
             </button>
           </div>
         </div>
-      </main>
+      </main> }
     </PageState>
   );
 }

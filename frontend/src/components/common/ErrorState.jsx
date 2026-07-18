@@ -1,34 +1,17 @@
-function ErrorState({
-    title = "Something went wrong",
-    message,
-    onRetry
-}) {
-    return (
-        <div className="d-flex justify-content-center mt-5">
-            <div
-                className="card shadow border-danger"
-                style={{ maxWidth: "500px" }}
-            >
-                <div className="card-body text-center">
+function ErrorState({ title = "Something went wrong", message, onRetry }) {
+  return (
+    <div className="container mt-4">
+      <div className="alert alert-danger shadow-sm text-center py-5">
+        <h3>{title}</h3>
 
-                    <h3 className="text-danger">
-                        {title}
-                    </h3>
+        <p className="mb-4">{message}</p>
 
-                    <p className="text-muted">
-                        {message}
-                    </p>
-
-                    <button
-                            className="btn btn-primary"
-                            onClick={onRetry}
-                        >
-                            Retry
-                        </button>
-                </div>
-            </div>
-        </div>
-    );
+        <button className="btn btn-danger" onClick={onRetry}>
+          Retry
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default ErrorState;
