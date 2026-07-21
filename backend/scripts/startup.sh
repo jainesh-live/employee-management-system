@@ -19,6 +19,8 @@ export SPRING_PROFILES_ACTIVE=local
 export DB_USERNAME=
 export DB_PASSWORD=
 export DB_URL=
+export JWT_SECRET=
+export JWT_EXPIRATION=3600000
 
 echo "Environment variables configured."
 

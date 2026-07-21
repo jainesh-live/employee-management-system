@@ -5,10 +5,6 @@ app:
 spring:
   application:
     name: employee-mgmt
-  security:
-    user:
-      name: ${APP_USER}
-      password: ${APP_PASSWORD}
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
@@ -23,3 +19,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:3600000}
